@@ -56,9 +56,9 @@ $.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imper
     $('#forecast-temp').append(text);
 
 
-    text += '<b>Min: </b>' + Math.floor(response.list[1].temp.min) + 'F<br/>';
-    text += '<b>Weather Conditions: </b>' + response.list[1].weather[0].main + '<br/>';
-    text = '<img src="http://openweathermap.org/img/w/' + response.list[1].weather[0].icon + '.png" />';
+    text += '<b>Min: </b>' + Math.floor(response.list[0].temp.min) + 'F<br/>';
+    text += '<b>Weather Conditions: </b>' + response.list[0].weather[0].main + '<br/>';
+    text = '<img src="http://openweathermap.org/img/w/' + response.list[0].weather[0].icon + '.png" />';
     $('#forecast-image').append(text)
 
 
