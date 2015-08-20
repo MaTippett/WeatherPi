@@ -43,14 +43,24 @@ $("#demo").text(new Date().toDateString());
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script>
 jQuery(document).ready(function($) {
-  $.ajax({
-  url : "http://api.wunderground.com/api/Your_Key/geolookup/conditions/q/IA/Cedar_Rapids.json",
-  dataType : "jsonp",
-  success : function(parsed_json) {
-  var location = parsed_json['location']['city'];
-  var temp_f = parsed_json['current_observation']['temp_f'];
-  alert("Current temperature in " + location + " is: " + temp_f);
-  }
+$.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imperial&cnt=1", function (response) {
+
+    /* The JSON.stringify() method just takes the object and turns it back into text (aka, a string). 
+    I'm only doing this here to show what the string looks like.*/
+
+    // show the raw json
+    $('#raw_json').text(JSON.stringify(response));
+
+    /* Working with the 'response' object (not string) here, now we can access the different properties available. 
+    (Look at jsoneditoronline.org to see the structure of the properties.) */
+    text = '<b>Max: </b>' + Math.floor(response.list[0].temp.max) + ' F<br/>';
+    text += '<b>Min: </b>' + Math.floor(response.list[0].temp.min) + 'F<br/>';
+    text += '<b>Weather Conditions: </b>' + response.list[0].weather[0].main + '<br/>';
+    text += '<b>Weather Icon: <img src="http://openweathermap.org/img/w/' + response.list[0].weather[0].icon + '.png" /><br/>';
+
+    $('#parsed_json').append(text);
+
+});
   });
 });
 </script>
