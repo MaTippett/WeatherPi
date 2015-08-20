@@ -28,7 +28,7 @@
   <tr>
     <td>Today</td>
     <td><img src="http://icons.wxug.com/i/c/i/clear.gif" /></td> 
-    <td>79&deg;</td>
+    <td><div id="forecast-temp"></div></td>
   </tr>
 </table>
   <p id="demo"></p>
@@ -42,7 +42,6 @@ $("#demo").text(new Date().toDateString());
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script>
-jQuery(document).ready(function($) {
 $.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imperial&cnt=1", function (response) {
 
     /* The JSON.stringify() method just takes the object and turns it back into text (aka, a string). 
@@ -53,12 +52,14 @@ $.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imper
 
     /* Working with the 'response' object (not string) here, now we can access the different properties available. 
     (Look at jsoneditoronline.org to see the structure of the properties.) */
-    text = '<b>Max: </b>' + Math.floor(response.list[0].temp.max) + ' F<br/>';
+    text = Math.floor(response.list[0].temp.max) + ' F<br/>';
+    $('#forecast-temp').append(text);
+
+
     text += '<b>Min: </b>' + Math.floor(response.list[0].temp.min) + 'F<br/>';
     text += '<b>Weather Conditions: </b>' + response.list[0].weather[0].main + '<br/>';
     text += '<b>Weather Icon: <img src="http://openweathermap.org/img/w/' + response.list[0].weather[0].icon + '.png" /><br/>';
 
-    $('#parsed_json').append(text);
 
 });
   });
