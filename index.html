@@ -5,8 +5,8 @@
       body {
         font-family: 'Delius+Unicase', cursive;
         font-size: 24px;
-      
-  
+     
+     
      
      
       
@@ -50,7 +50,7 @@ $.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imper
     // show the raw json
     $('#raw_json').text(JSON.stringify(response));
 
-    /* Working with the 'response' object (not string) here, now we can access the different properties available. 
+    /* Working with the 'response' object (not string) here, now we can access the different properties available.
     (Look at jsoneditoronline.org to see the structure of the properties.) */
     text = Math.floor(response.list[0].temp.max) + ' F<br/>';
     $('#forecast-temp').append(text);
