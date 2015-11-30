@@ -42,7 +42,12 @@ $("#demo").text(new Date().toDateString());
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script>
-$.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imperial&cnt=2&APPID=7baabbaf5f391c40c38610dab08c001a", function (response) {
+_now_url = 'http://api.openweathermap.org/data/2.5/weather?zip=94040,us';
+_forecast_url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imperial&cnt=2';
+_app_id = 'APPID=7baabbaf5f391c40c38610dab08c001a';
+$.get(_now_url+"&"+_app_id, function (response) {
+  
+    console.log(_now_url+"&"+_app_id)
 
     /* The JSON.stringify() method just takes the object and turns it back into text (aka, a string). 
     I'm only doing this here to show what the string looks like.*/
@@ -52,7 +57,7 @@ $.get("http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imper
 
     /* Working with the 'response' object (not string) here, now we can access the different properties available.
     (Look at jsoneditoronline.org to see the structure of the properties.) */
-    text = Math.floor(response.list[0].temp.max) + ' F<br/>';
+    text = Math.floor(response.main.temp) + ' F<br/>';
     $('#forecast-temp').append(text);
 
 
