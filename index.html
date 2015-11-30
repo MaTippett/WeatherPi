@@ -60,7 +60,7 @@ $.get(_now_url+"&"+_app_id, function (response) {
     text = Math.floor(response.main.temp) + ' F<br/>';
     $('#current-temp').append(text);
 
-text = Math.floor(response.weather[0].description)+'<br/>';
+text = response.weather[0].description+'<br/>';
     $('#current-cond').append(text);
 
 
