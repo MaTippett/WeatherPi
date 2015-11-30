@@ -22,8 +22,8 @@
   <table border="1" style="width:100%">
   <tr>
     <td>Now</td>
-    <td><img src="http://icons.wxug.com/i/c/i/clear.gif" /></td>
-    <td><div id="forecast-temp"></div></td>
+    <td><!-- <img src="http://icons.wxug.com/i/c/i/clear.gif" /> --><div id="current-cond"></div></td>
+    <td><div id="current-temp"></div></td>
   </tr>
   <tr>
     <td>Today</td>
@@ -58,7 +58,10 @@ $.get(_now_url+"&"+_app_id, function (response) {
     /* Working with the 'response' object (not string) here, now we can access the different properties available.
     (Look at jsoneditoronline.org to see the structure of the properties.) */
     text = Math.floor(response.main.temp) + ' F<br/>';
-    $('#forecast-temp').append(text);
+    $('#current-temp').append(text);
+
+text = Math.floor(response.weather[0].description)+'<br/>';
+    $('#current-cond').append(text);
 
 
     text += '<b>Min: </b>' + Math.floor(response.list[0].temp.min) + 'F<br/>';
