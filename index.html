@@ -27,8 +27,8 @@
   </tr>
   <tr>
     <td>Today</td>
-    <td><img src="weather-icon" /></td>
-    <td><div id="http://api.openweathermap.org/data/2.5/forecast/daily?q=94087units=imperialcnt=2APPID=7baabbaf5f391c40c38610dab08c001a"></div></td>
+    <td><img src="forecast-image" /></td>
+    <td><div id="current-temp"></div></td>
   </tr>
 </table>
   <p id="demo"></p>
@@ -64,10 +64,12 @@ text = response.weather[0].description+'<br/>';
     $('#current-cond').append(text);
 
 
-    text += '<b>Min: </b>' + Math.floor(response.list[0].temp.min) + 'F<br/>';
-    text += '<b>Weather Conditions: </b>' + response.list[0].weather[0].main + '<br/>';
-    text = '<img src="http://openweathermap.org/img/w/' + response.list[0].weather[0].icon + '.png" />';
-    $('#forecast-image').append(text)
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script>
+_now_url = 'http://api.openweathermap.org/data/2.5/weather?zip=94040,us&units=imperial';
+_forecast_url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=94087&units=imperial&cnt=2';
+_app_id = 'APPID=7baabbaf5f391c40c38610dab08c001a';
+$.get(_now_url+"&"+_app_id, function (response) {
 
 
 });
